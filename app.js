@@ -99,13 +99,8 @@ app.use("/api/product", productRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/customize", customizeRouter);
 
+// Run Server
 const PORT = process.env.PORT || 8000;
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log("Server is running on ", PORT);
-  });
-}
-
-module.exports = app;
-
-// Git Change
+app.listen(PORT, () => {
+  console.log("Server is running on ", PORT);
+});
