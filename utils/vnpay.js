@@ -18,7 +18,8 @@ function getReturnUrl() {
 function getIpnUrl() {
   return process.env.VNPAY_IPN_URL || 
          process.env.API_URL ? `${process.env.API_URL}/api/order/vnpay/ipn` :
-         "http://localhost:8888/api/order/vnpay/ipn";
+        //  "http://localhost:8888/api/order/vnpay/ipn";
+        "https://banhang-be.vercel.app/api/order/vnpay/ipn";
 }
 
 
