@@ -66,14 +66,7 @@ if (!process.env.DATABASE) {
 // Middleware
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(cors({
-  origin: [
-    'http://localhost:3000'
-  ],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
-}));
+app.use(cors());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
