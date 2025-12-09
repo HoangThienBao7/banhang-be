@@ -41,6 +41,36 @@ class Product {
     }
   }
 
+  async getDiscountProducts(req, res) {
+    try {
+      const limit = parseInt(req.query.limit || 8, 10);
+      const products = await productModel
+        .find({ pOffer: { $nin: [null, "0", ""] } })
+        .populate("pCategory", "_id cName")
+        .sort({ pOffer: -1, _id: -1 })
+        .limit(limit);
+      return res.json({ Products: products });
+    } catch (err) {
+      console.log(err);
+      return res.json({ error: "Filter discount products wrong" });
+    }
+  }
+
+  async getFeaturedProducts(req, res) {
+    try {
+      const limit = parseInt(req.query.limit || 8, 10);
+      const products = await productModel
+        .find({})
+        .populate("pCategory", "_id cName")
+        .sort({ pSold: -1, _id: -1 })
+        .limit(limit);
+      return res.json({ Products: products });
+    } catch (err) {
+      console.log(err);
+      return res.json({ error: "Filter featured products wrong" });
+    }
+  }
+
   async postAddProduct(req, res) {
     let { pName, pDescription, pPrice, pQuantity, pCategory, pOffer, pStatus } =
       req.body;
